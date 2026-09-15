@@ -275,7 +275,6 @@ def check_concept(rel: str, text: str, now: datetime) -> FileReport:
     refs = set(FOOTNOTE_REF.findall(body))
     defs = set(FOOTNOTE_DEF.findall(body))
     used = refs  # 引用出现即视为使用
-    orphan_foot = [x for x in (refs | defs) if src_ids and x not in src_ids and not x.startswith(("fn", "note"))]
     # 只有当文档确实声明了 sources 时才对账，避免对纯说明性脚注误报
     if src_ids:
         for x in sorted(used | defs):
@@ -388,8 +387,12 @@ def _resolve_link(rel_source: str, target: str, root: Path) -> str:
     if cand.endswith("/"):
         cand += "index.md"
     elif not cand.endswith(".md"):
-        # 链接到无扩展名路径时，按目录或 .md 两种可能归一（这里补 .md 以便匹配）
-        pass
+        # SPEC 链接通常带 .md；对省略扩展名的写法按“宽容消费”回退归一，
+        # 避免把指向真实文件的合法链接误判为死链、进而把目标误判为孤儿页
+        if (root / (cand + ".md")).exists():
+            cand += ".md"
+        elif (root / cand / "index.md").exists():
+            cand = cand + "/index.md"
     return cand
 
 

@@ -2,7 +2,7 @@
 
 把资料"编译"成一套**纯 Markdown + YAML frontmatter** 的结构化知识库（OKF bundle），并把它当作项目的跨会话外置记忆。内核是 Google Cloud 的 **OKF v0.2（Open Knowledge Format）**，本技能是其外的一层**中文使用层（包装，不裁剪）**。
 
-- 类型：用户级、跨项目的**本地目录技能**（位于 `~/Doubao/skills/okf-wiki/`，2026-09-07 建）；**不是飞书知识空间/云文档，命中时直接读本地文件，勿去飞书搜同名**
+- 类型：用户级、跨项目的**本地目录技能**（位于 `~/Doubao/skills/okf-wiki/`）；**不是飞书知识空间/云文档，命中时直接读本地文件，勿去飞书搜同名**
 - 理念来源：Andrej Karpathy《LLM Wiki》（2026-04）；格式标准：Google Cloud OKF v0.2
 - 许可：OKF 内核 © Google Cloud（Apache-2.0，见 `reference/OKF-LICENSE-Apache2.0.txt`）；校验器参考 `scaccogatto/okf-skills`（MIT）思路零依赖重写
 
@@ -50,10 +50,3 @@ python3 ~/Doubao/skills/okf-wiki/scripts/okf_validate.py <bundle目录> --json  
 ## 能力边界
 
 豆包/Trae 无 IDE 型 Agent 的后台钩子，只做"软模式"（项目 AGENTS 约定 + 话术触发 + 手动校验），不是常驻服务；刻意不做只读 MCP（与 Read/Grep 重复）、IDE 插件/GitHub Action/Stop hook（平台不支持）、知识图谱可视化与 git 事件溯源（首版不需要）；不联网、不起服务、不含向量检索。
-
-## 版本
-
-- v0.1.0（2026-09-07）：首版。内置 OKF v0.2 内核、三份中文手册、三档+bundle 模板、零依赖校验器、样例 bundle。
-- v0.2.0（2026-09-07）：对照最成熟现成实现 okf-skills（MIT，★373）同行评审后增强——校验器加 `--max-warnings N`；手册补 produce/maintain/consume 三模式、**实质改动后 verified 不延续**、**批量回填(backfill)纪律**（只加元数据不动正文、机器回填不冒充人工、覆盖率对账）、软/强制维护模式边界、两类规模区分、第三方基准的诚实结论；列出"刻意不做"清单。内核 SPEC 逐字未动。
-- v0.2.1（2026-09-07）：路由消歧（无功能改动）。实测新会话"点名触发"时会先去飞书知识空间找 okf-wiki、再绕回本地，故在 SKILL 的 description 与第 0 节、全局 AGENTS 指针中明确"okf-wiki 是本地技能目录、非飞书空间，第一跳直接读本地"。内核 SPEC、校验器、模板均未动。
-- v0.2.2（2026-09-07）：①memory-handoff 写入动作前加"写入前三问"精简闸门（只收拢 §2/§4/§5 既有规则、不新增、不重复展开）；②新增 `templates/PROJECT-OKF-DECLARATION.template.md`——项目在自身 AGENTS 声明"如何采用/收窄 okf-wiki、覆盖全局默认"，含两个填法示例与"让 AI 代填"的话术；SKILL/README 索引同步登记。内核 SPEC 与校验器未动。

@@ -112,6 +112,8 @@ stale_after: 2026-12-31T23:59:59+08:00   # 绝对时刻；now >= 它即"过期"�
 | `human:<id>` | **人**（手写或人工复核必须用此前缀，信任等级靠它识别） | `human:wenjiechen` |
 | `process:<id>` | 自动化流程 | `process:nightly-qa` |
 
+> `sources[].author` 描述**组织/团队**来源时还可用 `team:<id>`（SPEC §5.1 官方示例即 `author: team:ga4-docs`）。注意边界：影响**信任分级**的 `generated.by` / `verified[].by` 只认上面三种形态、人工内容必须精确用 `human:`；`team:` 仅用于来源作者，不参与 human-reviewed 判定。
+
 > ⚠️ 易错：把人写成 `human/wenjie`（斜杠）或 `Human:xx`（大小写/拼写），会被当成 Agent，信任等级被静默降为 machine-confirmed。人工内容必须是精确的 `human:` 前缀。
 
 ### 2.6 时间格式（§5 开头，硬约定）

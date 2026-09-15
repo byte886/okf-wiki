@@ -1,15 +1,14 @@
 ---
 name: okf-wiki
 description: 用 OKF（Open Knowledge Format v0.2）在本地项目建立并维护"LLM 编译式知识库 / 跨会话外置记忆"。当用户要把资料沉淀为结构化 Markdown 知识库、给项目建长期记忆或上下文文档、在新会话恢复项目上下文、按统一格式整理知识条目、对知识库做摄入(ingest)/查询(query)/自检(lint)，或提到 OKF / Open Knowledge Format / Karpathy LLM Wiki / 知识包 bundle 时使用。内核是 Google Cloud OKF v0.2（Apache-2.0，原样内置、禁止改写），本技能只提供中文使用层、模板与确定性校验，不绑定任何编辑器或平台。注意：本技能是**本地文件目录技能**（`~/Doubao/skills/okf-wiki`），**不是飞书知识库 / 云文档空间**；被点名或命中时直接读本目录的 SKILL.md 与 reference/，不要先去飞书、云盘搜索同名空间。
-compatibility: "方法论/格式本身跨平台；随附脚本与运行环境仅在 macOS(Darwin) 实测，Windows/Linux 未适配。执行前先判平台(uname -s)，涉及脚本/命令时非 macOS 停止并告知需另行适配、不硬跑；将来补齐后按平台分流并分别标注验证状态"
+compatibility: "方法论与随附校验脚本均跨平台：okf_validate.py 只用 Python 标准库、不调用任何操作系统专有命令，Windows/Linux/macOS 均可直接运行；已在 macOS 实测，其余平台未专门实测、遇路径或编码等平台差异再就地适配，无需按操作系统拦截停跑"
 ---
 
 # okf-wiki：OKF 知识库 / 跨会话外置记忆
 
-## 平台适用（执行前先读）
-- 方法论/格式本身跨平台；但**随附脚本与本套运行环境仅在 macOS（Darwin）实测**。
-- 动手前先 `uname -s` 判平台：Darwin 走现有流程；Windows/Linux 只能使用纯方法论部分，一旦涉及脚本/命令，停下提示需另行适配，不硬跑。
-- 以后补齐 Windows 后也保留“先判平台 → 按平台分流”的结构，分别标注各平台验证状态。
+## 平台适用
+- 方法论/格式跨平台；`scripts/okf_validate.py` 只用 Python 标准库、不依赖任何操作系统专有命令，Windows / Linux / macOS 都能直接运行。
+- 已在 macOS 实测；其余平台未专门实测，若遇到路径/编码等平台差异再就地适配，不需要按操作系统拦截或停跑。
 
 ## 0. 30 秒理解本技能
 
@@ -101,5 +100,5 @@ python3 scripts/okf_validate.py <bundle目录> --json            # 机器可读
 ## 10. 许可与来源
 
 - OKF SPEC © Google Cloud，Apache License 2.0，原文 `reference/OKF-SPEC-v0.2.md`，保留归属；本技能中文层为自用封装。
-- 校验器参考最成熟的现成实现 `scaccogatto/okf-skills`（MIT，★373，2026-09-07 取数，Claude Code 原生）的一致性思路**零依赖重写**；并吸收其"实质改动 verified 不延续、批量回填不冒充人工、覆盖率对账、软/强制维护模式"等**纪律**，但不搬它的插件/Action/MCP/可视化/git 事件溯源（豆包不适用），来源见脚本头注释与 `reference/memory-handoff.zh.md` §6。
+- 校验器参考最成熟的现成实现 `scaccogatto/okf-skills`（MIT、Claude Code 原生；不依赖 PyYAML）的一致性思路**零依赖重写**；并吸收其"实质改动 verified 不延续、批量回填不冒充人工、覆盖率对账、软/强制维护模式"等**纪律**，但不搬它的插件/Action/MCP/可视化/git 事件溯源（豆包不适用），来源见脚本头注释与 `reference/memory-handoff.zh.md` §6。
 - 上游：规范现行权威仓 GoogleCloudPlatform/open-knowledge-format（v0.2）；理念来源 Andrej Karpathy "LLM Wiki" gist（2026-04）。
