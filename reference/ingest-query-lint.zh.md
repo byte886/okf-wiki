@@ -83,10 +83,11 @@
   - [ ] v0.1 遗留：`timestamp`（应迁 `generated.at`）、正文 `# Citations`（应迁 `sources`）
 
 ```bash
-python3 <skill>/scripts/okf_validate.py <bundle目录>                  # 常规：E 必改，W 列出确认
-python3 <skill>/scripts/okf_validate.py <bundle目录> --strict         # 严格：W 也视为不通过
-python3 <skill>/scripts/okf_validate.py <bundle目录> --max-warnings 5 # 允许遗留≤5条 W、超过才不通过（分批清债）
-python3 <skill>/scripts/okf_validate.py <bundle目录> --json           # 机器可读输出
+# 在本技能根目录执行（脚本在 scripts/ 下）；不在该目录时把 scripts/ 换成脚本的实际路径（跨平台、勿写死某台机家目录）
+python3 scripts/okf_validate.py <bundle目录>                  # 常规：E 必改，W 列出确认
+python3 scripts/okf_validate.py <bundle目录> --strict         # 严格：W 也视为不通过
+python3 scripts/okf_validate.py <bundle目录> --max-warnings 5 # 允许遗留≤5条 W、超过才不通过（分批清债）
+python3 scripts/okf_validate.py <bundle目录> --json           # 机器可读输出
 ```
 
 ### 4.2 语义项（脚本查不出，人工/Agent 判断）
