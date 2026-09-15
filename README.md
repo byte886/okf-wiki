@@ -22,7 +22,8 @@
 | `reference/OKF-SPEC-v0.2.md` | **内核，只读**（1006 行，与上游权威仓逐字一致，核对见 PROVENANCE） |
 | `reference/OKF-PROVENANCE.md` | 内核来源、版本、核对与跟版升级规则 |
 | `reference/OKF-LICENSE-Apache2.0.txt` | Apache-2.0 许可证全文 |
-| `reference/field-guide.zh.md` | 字段中文手册、三档、示例、误区 |
+| `reference/field-guide.zh.md` | 字段中文手册、最小骨架、字段逐项、示例 |
+| `reference/bundle-files-and-pitfalls.zh.md` | 三档选用、index/log 写法、链接规则、常见误区 |
 | `reference/memory-handoff.zh.md` | 跨会话外置记忆约定（衔接全局 AGENTS 四层记忆） |
 | `reference/ingest-query-lint.zh.md` | init/ingest/query/lint 四操作 SOP |
 | `reference/upstream-okf_validate.reference.py` | 上游 MIT 校验器参考实现（依赖 PyYAML，非交付脚本） |
