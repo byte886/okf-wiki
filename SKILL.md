@@ -1,4 +1,5 @@
 ---
+type: workflow
 name: okf-wiki
 description: 用 OKF（Open Knowledge Format v0.2）在本地项目建维护结构化 Markdown 知识库/跨会话外置记忆。当用户要把资料沉淀为知识包 bundle、给项目建长期记忆或上下文文档、新会话恢复项目上下文、对知识库做 ingest 摄入/query 查询/lint 自检，或提到 OKF / Open Knowledge Format / Karpathy LLM Wiki / concept/frontmatter 知识格式时使用。内核是 Google Cloud OKF v0.2（逐字内置不改写），本技能只提供中文使用层、模板与校验。注意：本技能是本地目录技能（~/Doubao/skills/okf-wiki），不是飞书知识库/云文档，命中时直接读本目录，勿去飞书搜同名。
 compatibility: 方法论与随附校验脚本均跨平台：okf_validate.py 只用 Python 标准库、不调用任何操作系统专有命令，Windows/Linux/macOS 均可直接运行；已在 macOS 实测，其余平台遇路径/编码差异再就地适配，无需按操作系统拦截停跑
